@@ -13,7 +13,7 @@ let brickHeight = 70;
 let paused = true;
 
 //audio
-let audio = new Audio("../sound/laser1.mp3");
+let audio = new Audio("sound/laser1.mp3");
 audio.loop = false;
 
 //TOPBAR (SCORE, ŽIVLJENJA  in MENI NASTAVITEV)

@@ -1,0 +1,233 @@
+* {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: naslov;
+  src: url(../fonts/naslov.ttf);
+}
+
+@font-face {
+  font-family: ostalo;
+  src: url(../fonts/ostalo.ttf);
+}
+
+/*ZGORNJA VRSTICA*/
+
+.topbar {
+  font-family: naslov;
+  font-size: 20px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 98%;
+  margin: 0 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.topbar #settingsenter {
+  width: 220px;
+}
+
+.topbar #settingsenter input[type="image"] {
+  outline: none;
+  margin: 5px;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 15%;
+  border: 5px solid #000000;
+  height: 50px;
+}
+
+.topbar #settingsenter input[type="image"]:hover {
+  background-color: #562bbb;
+}
+
+.topbar #lives {
+  width: 220px;
+  margin: auto;
+}
+
+.topbar #score {
+  width: 190px;
+  background-color: #ffffff;
+  height: 60px;
+  border: 5px solid #000000;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+/*SPODNJA VRSTICA*/
+.bottombar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1% 0;
+}
+
+.bottombar #time {
+  font-family: naslov;
+  font-size: 60px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 5px solid #000000;
+  height: 90px;
+  padding: 0 10px;
+  width: 173px;
+}
+
+.bottombar input[type="image"] {
+  outline: none;
+  margin: 5px 5px 5px 5px;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 15%;
+  border: 5px solid #000000;
+  height: 75px;
+}
+
+.bottombar input[type="image"]:hover {
+  background-color: #562bbb;
+}
+
+/*NAJBOLJSI REZULTATI*/
+#bestresaults {
+  position: absolute;
+  display: none;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 500px;
+  height: 400px;
+  background: #ffffff;
+  border: 5px solid #000000;
+  border-radius: 5%;
+  z-index: 1;
+}
+.content {
+  padding: 10px;
+}
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: naslov;
+  font-size: 20px;
+}
+
+.top span {
+  padding: 10px;
+  font-size: 30px;
+  font-weight: 1000;
+  cursor: pointer;
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 13px;
+  font-family: naslov;
+  margin: 10px 0;
+}
+
+.resault {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 13px;
+  font-family: ostalo;
+}
+
+/*NASTAVITVE*/
+
+.menusection {
+  font-size: 20px;
+  font-family: ostalo;
+  margin: 20px 20px 20px 0;
+}
+
+#settings {
+  position: absolute;
+  display: none;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 500px;
+  height: 400px;
+  background: #ffffff;
+  border: 5px solid #000000;
+  border-radius: 5%;
+  z-index: 1;
+}
+
+#settings .settings-content {
+  padding: 10px;
+}
+
+#settings .settings-content input[type="image"] {
+  outline: none;
+  margin: 10px 10px 10px 0;
+  background-color: #ffffff;
+  padding: 0 10px 0 10px;
+  border-radius: 15%;
+  border: 3px solid #000000;
+  height: 50px;
+}
+
+#settings .settings-content .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: naslov;
+  font-size: 20px;
+}
+
+#settings .settings-content .top span {
+  padding: 10px;
+  font-size: 30px;
+  font-weight: 1000;
+  cursor: pointer;
+}
+
+#settings .settings-content input[type="image"]:hover {
+  background-color: #562bbb;
+}
+
+/*sliders*/
+#settings .settings-content input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 15px;
+  background: #818080;
+  outline: none;
+}
+
+#settings .settings-content input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 30px; /* Set a specific slider handle width */
+  height: 30px; /* Slider handle height */
+  background: #562bbb; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+#settings .settings-content input[type="range"]::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #562bbb; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}

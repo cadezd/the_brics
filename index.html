@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sl">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <title>The brics</title>
+</head>
+
+<body>
+    
+    <!--CANVAS FOR DRAWING-->
+    <canvas></canvas>
+
+    <div class="topbar">
+        <div id="settingsenter">
+            <input id="cog" type="image" src="./images/settings.png" alt="settings" title="settings" />
+        </div>
+        <div id="lives">
+        </div>
+        <h1 id="score">SCORE: 0</h1>
+    </div>
+
+    <div id="settings">
+        <div class="settings-content">
+            <div class="top">
+                <h1>Settings</h1>
+                <span class="close" title="close" alt="close">&times;</span>
+            </div>
+            <div class="menusection">
+                <p>Game mode:</p>
+                <input id="mouse" type="image" src="./images/mouse.png" onclick="setMouse()" alt="play with a mouse" title="play with a mouse" />
+                <input id="keyboard" type="image" src="./images/keyboard.png" onclick="setKeyboard()" alt="play with a keyboard" title="play with a keyboard" />
+            </div>
+        </div>
+    </div>
+
+    <div id="bestresaults">
+        <div class="content">
+            <div class="top">
+                <h1>Best resaults</h1>
+                <span class="close" title="close" alt="close">&times;</span>
+            </div>
+            <div class="head">
+                <h1>Date:</h1><h1>Score:</h1><h1>Time:</h1>
+            </div>
+            <div id="resaults">
+            </div>
+        </div>
+    </div>
+
+    <div class="bottombar">
+        <h1 id="time">00:00</h1>
+        <input id="list" type="image" src="./images/list.png" alt="best resaults" title="best resaults" />
+    </div>
+
+    <!--SCRIPTS-->
+    <script src="./js/index.js" type="text/javascript"></script>
+</body>
+
+</html>

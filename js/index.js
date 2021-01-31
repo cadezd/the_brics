@@ -136,6 +136,7 @@ let list = document.getElementById("list");
 let bestResaults = document.getElementById("bestresaults");
 let close1 = document.getElementsByClassName("close")[1];
 list.onclick = function(){
+    setPause();
     bestResaults.style.display = "block";
 }
 close1.onclick = function() {
@@ -430,7 +431,7 @@ class Paddle {
             mousePosY = event.clientY;
 
             //preveri ali je nacin igranja z misko
-            if (mode === 0) {
+            if (mode === 0 && !paused) {
                 //preveri da je miska v obmocju igrice
                 if ((this.x + this.widht) <= (WIDTH / 2) + (WIDTHGAME / 2) && (mousePosX + this.widht / 2) <= (WIDTH / 2) + (WIDTHGAME / 2) && this.x >= (WIDTH / 2) - (WIDTHGAME / 2) && (mousePosX - this.widht / 2) >= (WIDTH / 2) - (WIDTHGAME / 2) && mousePosY <= (200 + HEIGHTGAME) && mousePosY >= 200) {
                     this.x = mousePosX - (this.widht / 2);
@@ -639,6 +640,7 @@ window.addEventListener("load", () => {
 
                 if(lives == 0 && paused == true){
                     zapisiRezultat(date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear(),izpisTimer, score);
+                    location.reload();
                 }
         } else {
             paddle.draw();

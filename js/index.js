@@ -463,13 +463,6 @@ class Paddle {
     }
 
     changePositionKeyboard() { // spreminaj pozicijo paddla s tipkovnico
-        window.addEventListener("keydown", () => {
-            this.onKeyDown(event);
-        });
-        window.addEventListener("keyup", () => {
-            this.onKeyUp(event);
-        });
-
         // ce je desni arrow kex pritisnjen premakni paddle v desno
         // preverja tudi da je paddle v okvirju
         if (this.rightDown === true && (this.x + this.widht + 2) <= (WIDTH / 2) + (WIDTHGAME / 2)) {
@@ -565,17 +558,21 @@ let levels = [lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9, lvl10];
 let date = new Date();
 
 //GAME LOOP
+let ball = new Ball(WIDTH / 2, HEIGHT / 2 + 150, ballSpeed, ballSpeed, "#8c1915", "#ffffff", 8);
+let paddle = new Paddle(WIDTH / 2 - 50, HEIGHT - 300, 100, 8, "#000000", paddleSpeed);
+let brics = new Brics(HEIGHTGAME / 2, WIDTHGAME, levels[x], );
+  
 
 window.addEventListener("keydown", (evt) =>{
     if(evt.keyCode == 32  ){
         paused = false;
     }
-});   
-
+    paddle.onKeyDown(evt);
+});  
+window.addEventListener("keyup", (evt) =>{
+    paddle.onKeyUp(evt);
+});  
 window.addEventListener("load", () => {
-    let ball = new Ball(WIDTH / 2, HEIGHT / 2 + 150, ballSpeed, ballSpeed, "#8c1915", "#ffffff", 8);
-    let paddle = new Paddle(WIDTH / 2 - 50, HEIGHT - 300, 100, 8, "#000000", paddleSpeed);
-    let brics = new Brics(HEIGHTGAME / 2, WIDTHGAME, levels[x], );
     setInterval(()=> {
         clear();
         drawAllBorders();

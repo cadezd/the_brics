@@ -75,22 +75,6 @@ close.onclick = function() {
 //igralni način (miška ali tipkovnica)
 let mouseButton = document.getElementById("mouse");
 let keyboardButton = document.getElementById("keyboard");
-let paddleSpeedInput = document.getElementsByClassName("slider")[0];
-let ballSpeedInput = document.getElementsByClassName("slider")[1];
-
-//dobi value od slajderja
-let ballSpeed = 3;
-let paddleSpeed = 3;
-function updateValPaddle(val){
-    document.getElementById("paddlespeed").innerHTML = "Paddle speed: " + val
-    paddleSpeed = val;
-}
-
-function updateValBall(val){
-    document.getElementById("ballspeed").innerHTML = "Ball speed: " + val
-    ballSpeed = val;
-}
-
 
 //razlicni game modi
 let mode = 1;
@@ -111,6 +95,24 @@ function continueGame(){
     paused = false;
 }
 setKeyboard(); // default playmode
+
+//nastavitve voluma
+let k = 0;
+let volume = document.getElementById("volume");
+volume.onclick = function(){
+    if(k % 2 == 0){
+        volume.setAttribute("src", "images/volume.png");
+        volume.setAttribute("alt", "volume");
+        volume.setAttribute("title", "volume");
+        audio.volume = 1;
+    } else {
+        volume.setAttribute("src", "images/mute.png");
+        volume.setAttribute("alt", "mute");
+        volume.setAttribute("title", "mute");
+        audio.volume = 0;
+    }
+    k++;
+}
 
 //BOTTOM BAR (ČAS)
 let sekunde = 1;
@@ -413,6 +415,8 @@ class Paddle {
         this.dx = dx; // hitros pemikanja
         this.rightDown = false;
         this.leftDown = false;
+        this.mousePosX = 0;
+        this.mousePosY = 0;
     }
 
     draw() {
@@ -422,30 +426,27 @@ class Paddle {
         c.closePath();
     }
 
+    onMouseMove(evt){
+        this.mousePosX = evt.clientX;
+        this.mousePosY = evt.clientY;
+    }
+
     changePositionMouse() {
-        let mousePosX;
-        let mousePosY;
-
-        window.addEventListener("mousemove", () => {
-            mousePosX = event.clientX;
-            mousePosY = event.clientY;
-
-            //preveri ali je nacin igranja z misko
-            if (mode === 0 && !paused) {
-                //preveri da je miska v obmocju igrice
-                if ((this.x + this.widht) <= (WIDTH / 2) + (WIDTHGAME / 2) && (mousePosX + this.widht / 2) <= (WIDTH / 2) + (WIDTHGAME / 2) && this.x >= (WIDTH / 2) - (WIDTHGAME / 2) && (mousePosX - this.widht / 2) >= (WIDTH / 2) - (WIDTHGAME / 2) && mousePosY <= (200 + HEIGHTGAME) && mousePosY >= 200) {
-                    this.x = mousePosX - (this.widht / 2);
-                }
-                // ce gre miska izven obmocja igrice na desni strani paddle ohrani na tem mestu
-                if ((this.x + this.widht) >= (WIDTH - 212) && mousePosX <= (WIDTH - 212)) {
-                    this.x = (WIDTH - 220) - this.widht;
-                }
-                // ce gre miska izven obmocja igrice na levi strani paddle ohrani na tem mestu
-                if ((this.x) <= 200 && mousePosX >= (200)) {
-                    this.x = 205;
-                }
+        //preveri ali je nacin igranja z misko
+        if (mode === 0 && !paused) {
+            //preveri da je miska v obmocju igrice
+            if ((this.x + this.widht) <= (WIDTH / 2) + (WIDTHGAME / 2) && (this.mousePosX + this.widht / 2) <= (WIDTH / 2) + (WIDTHGAME / 2) && this.x >= (WIDTH / 2) - (WIDTHGAME / 2) && (this.mousePosX - this.widht / 2) >= (WIDTH / 2) - (WIDTHGAME / 2) && this.mousePosY <= (200 + HEIGHTGAME) && this.mousePosY >= 200) {
+                this.x = this.mousePosX - (this.widht / 2);
             }
-        });
+            // ce gre miska izven obmocja igrice na desni strani paddle ohrani na tem mestu
+            if ((this.x + this.widht) >= (WIDTH - 212) && this.mousePosX <= (WIDTH - 212)) {
+                this.x = (WIDTH - 220) - this.widht;
+            }
+            // ce gre miska izven obmocja igrice na levi strani paddle ohrani na tem mestu
+            if ((this.x) <= 200 && this.mousePosX >= (200)) {
+                this.x = 205;
+            }
+        }
     }
 
     onKeyDown(evt) { // preveri ali so arrow key pritisnjeni 
@@ -555,9 +556,11 @@ let lvl10 = [
 let x = 0;
 let levels = [lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9, lvl10];
 
-let date = new Date();
 
 //GAME LOOP
+let ballSpeed = 3;
+let paddleSpeed = 3;
+let date = new Date();
 let ball = new Ball(WIDTH / 2, HEIGHT / 2 + 150, ballSpeed, ballSpeed, "#8c1915", "#ffffff", 8);
 let paddle = new Paddle(WIDTH / 2 - 50, HEIGHT - 300, 100, 8, "#000000", paddleSpeed);
 let brics = new Brics(HEIGHTGAME / 2, WIDTHGAME, levels[x], );
@@ -572,6 +575,10 @@ window.addEventListener("keydown", (evt) =>{
 window.addEventListener("keyup", (evt) =>{
     paddle.onKeyUp(evt);
 });  
+window.addEventListener("mousemove", (evt) =>{
+    paddle.onMouseMove(evt);
+});
+
 window.addEventListener("load", () => {
     setInterval(()=> {
         clear();

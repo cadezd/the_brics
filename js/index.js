@@ -455,7 +455,7 @@ initMouse();
 initKeyboard();
 instructions();
 initCanvas();
-initbricks(nBrics, 3, 4);
+initbricks(nBrics, 10, 4);
 drawBrics(bricks);
 initBall();
 initPaddle();
